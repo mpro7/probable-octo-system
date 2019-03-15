@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-user-list',
@@ -7,11 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListComponent implements OnInit {
 
-  usersArray = ['anon', 'baton', 'canon'];
+  usersArray: User[];
 
   constructor() { }
 
   ngOnInit() {
+    this.usersArray = [
+      {name: 'anon', score: 1},
+      {name: 'baton', score: 2},
+      {name: 'canon', score: 3}
+    ]
   }
 
 }
