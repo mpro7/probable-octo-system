@@ -1,5 +1,23 @@
-<p>
-  user-list works!
-</p>
+<div class="container">
 
-<div *ngFor="let user of usersArray">{{user.score + '.' + user.name}}</div>
+  <h1 class="text-center">{{title | titlecase}}</h1>
+
+  <div class="text-center" style="padding: 3em 0">
+    <button *ngFor="let button of buttonsText" class="btn btn-default col-xs-12 col-md-4">{{button | titlecase}}</button>
+  </div>
+  <br>
+  <table class="table table-striped">
+    <thead class="text-primary">
+      <tr>
+        <th>#</th>
+        <th>user</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of usersArray" class="small">
+          <th>{{user.score}}</th>
+          <th>{{user.name}}</th>
+        </tr>
+    </tbody>
+  </table>
+</div>

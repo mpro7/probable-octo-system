@@ -7,17 +7,17 @@ import { User } from '../user.model';
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-
+  title = 'simple user list';
+  buttonsText = ['add user', 'edit user', 'delete user'];
   usersArray: User[];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.usersArray = [
-      {name: 'anon', score: 1},
-      {name: 'baton', score: 2},
-      {name: 'canon', score: 3}
-    ]
+      { name: 'anon', score: 1 },
+      { name: 'baton', score: 2 },
+      { name: 'canon', score: 3 }
+    ];
   }
-
 }
