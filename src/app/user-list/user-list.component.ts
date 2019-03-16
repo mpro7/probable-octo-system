@@ -11,7 +11,7 @@ import { UsersHandlingService } from '../users-handling.service';
 })
 export class UserListComponent implements OnInit {
   title = 'simple user list';
-  buttonsText = ['add', 'edit', 'delete'];
+  buttonsText = [{text: 'add', style: 'btn-success'}, {text: 'edit', style: 'btn-warning'}, {text: 'delete', style: 'btn-danger'}];
   usersArray: User[];
   isUserAdded = false;
   UserFG: FormGroup;
@@ -27,6 +27,10 @@ export class UserListComponent implements OnInit {
     switch (true) {
       case param === 'add':
       this.isUserAdded = !this.isUserAdded;
+      break;
+      case param === 'delete':
+      this.deleteUser();
+      break;
     }
   }
 
@@ -37,6 +41,11 @@ export class UserListComponent implements OnInit {
   confirmAdditon(): void {
     const newUser: User = {facetName: this.user, amount: this.score};
     this.userHandling.addUser(newUser);
+    this.usersArray = this.userHandling.getUsers();
+  }
+
+  deleteUser(): void {
+    this.userHandling.deleteUser();
     this.usersArray = this.userHandling.getUsers();
   }
 

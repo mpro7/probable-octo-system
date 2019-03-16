@@ -29,5 +29,7 @@ export class UsersHandlingService {
 
   editUser(): void {}
 
-  deleteUser(): void {}
+  deleteUser(): void {
+    this.userListArray.pop();
+  }
 }

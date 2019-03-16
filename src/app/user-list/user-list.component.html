@@ -2,8 +2,8 @@
 
   <h1 class="text-center">{{title | titlecase}}</h1>
 
-  <div class="text-center" style="padding: 3em 0">
-    <button *ngFor="let button of buttonsText" (click)="onActionButton(button)" class="btn btn-default col-xs-12 col-md-4">{{button | titlecase}} User</button>
+  <div class="text-center btn-group col-md-12 col-xs-12" style="padding: 3em 0">
+    <button *ngFor="let button of buttonsText" (click)="onActionButton(button.text)" class="btn btn-default col-xs-12 col-md-4 {{button.style}}">{{button.text | titlecase}} User</button>
   </div>
 
   <form [formGroup]="UserFG" *ngIf="isUserAdded">
@@ -37,3 +37,5 @@
     </tbody>
   </table>
 </div>
+
+<pre>{{UserFG.value | json}}</pre>
