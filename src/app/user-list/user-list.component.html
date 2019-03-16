@@ -9,14 +9,14 @@
   <table class="table table-striped">
     <thead class="text-primary">
       <tr>
-        <th>#</th>
+        <th>score</th>
         <th>user</th>
       </tr>
     </thead>
     <tbody>
         <tr *ngFor="let user of usersArray" class="small">
-          <th>{{user.score}}</th>
-          <th>{{user.name}}</th>
+          <th>{{user.amount}}</th>
+          <th>{{user.facetName}}</th>
         </tr>
     </tbody>
   </table>

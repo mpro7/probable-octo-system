@@ -1,4 +1,4 @@
 export interface User {
-  name: string;
-  score: number;
+  facetName: string;
+  amount: number;
 }

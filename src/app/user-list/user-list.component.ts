@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { User } from '../user.model';
+import { UsersHandlingService } from '../users-handling.service';
 
 @Component({
   selector: 'app-user-list',
@@ -11,13 +13,9 @@ export class UserListComponent implements OnInit {
   buttonsText = ['add user', 'edit user', 'delete user'];
   usersArray: User[];
 
-  constructor() {}
+  constructor(private readonly userHandling: UsersHandlingService) {}
 
   ngOnInit() {
-    this.usersArray = [
-      { name: 'anon', score: 1 },
-      { name: 'baton', score: 2 },
-      { name: 'canon', score: 3 }
-    ];
+    this.userHandling.initializeUsers().subscribe(val => this.usersArray = val);
   }
 }
