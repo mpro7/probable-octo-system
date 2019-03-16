@@ -20,15 +20,14 @@ export class UsersHandlingService {
   }
 
   getUsers(): User[] {
-    const users = this.userListArray;
-    return users;
+    return this.userListArray;
   }
 
-  addUser() {
-
+  addUser(user: User): void {
+    this.userListArray.push(user);
   }
 
-  editUser() {}
+  editUser(): void {}
 
-  deleteUser() {}
+  deleteUser(): void {}
 }

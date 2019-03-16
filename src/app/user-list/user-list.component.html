@@ -3,14 +3,30 @@
   <h1 class="text-center">{{title | titlecase}}</h1>
 
   <div class="text-center" style="padding: 3em 0">
-    <button *ngFor="let button of buttonsText" class="btn btn-default col-xs-12 col-md-4">{{button | titlecase}}</button>
+    <button *ngFor="let button of buttonsText" (click)="onActionButton(button)" class="btn btn-default col-xs-12 col-md-4">{{button | titlecase}} User</button>
   </div>
+
+  <form [formGroup]="UserFG" *ngIf="isUserAdded">
+    <div class="form-group">
+      <label for="scoreInput">Score</label>
+      <input formControlName="scoreFC" type="score" class="form-control" id="scoreInput" placeholder="Score">
+    </div>
+    <div class="form-group">
+      <label for="userInput">User</label>
+      <input formControlName="userFC" type="user" class="form-control" id="userInput" placeholder="User">
+    </div>
+    <ng-container class="button-group">
+      <button (click)="confirmAdditon()" typw="submit" class="btn btn-success">Confirm</button>
+      <button (click)="closeAddition()" class="btn btn-warning">Cancel</button>
+    </ng-container>
+  </form>
+
   <br>
   <table class="table table-striped">
     <thead class="text-primary">
       <tr>
-        <th>score</th>
-        <th>user</th>
+        <th>{{'score' | titlecase}}</th>
+        <th>{{'user' | titlecase}}</th>
       </tr>
     </thead>
     <tbody>

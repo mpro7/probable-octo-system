@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { User } from '../user.model';
 import { UsersHandlingService } from '../users-handling.service';
@@ -10,12 +11,47 @@ import { UsersHandlingService } from '../users-handling.service';
 })
 export class UserListComponent implements OnInit {
   title = 'simple user list';
-  buttonsText = ['add user', 'edit user', 'delete user'];
+  buttonsText = ['add', 'edit', 'delete'];
   usersArray: User[];
+  isUserAdded = false;
+  UserFG: FormGroup;
 
-  constructor(private readonly userHandling: UsersHandlingService) {}
+  constructor(private readonly userHandling: UsersHandlingService, private readonly fb: FormBuilder) {}
 
   ngOnInit() {
     this.userHandling.initializeUsers().subscribe(val => this.usersArray = val);
+    this.createUserFormGroup();
+  }
+
+  onActionButton(param: string): void {
+    switch (true) {
+      case param === 'add':
+      this.isUserAdded = !this.isUserAdded;
+    }
+  }
+
+  closeAddition(): void {
+    this.isUserAdded = false;
+  }
+
+  confirmAdditon(): void {
+    const newUser: User = {facetName: this.user, amount: this.score};
+    this.userHandling.addUser(newUser);
+    this.usersArray = this.userHandling.getUsers();
+  }
+
+  createUserFormGroup(): FormGroup {
+    return this.UserFG = this.fb.group({
+      scoreFC: [null],
+      userFC: [null]
+    });
+  }
+
+  get score(): number {
+    return this.UserFG.get('scoreFC').value;
+  }
+
+  get user(): string {
+    return this.UserFG.get('userFC').value;
   }
 }
